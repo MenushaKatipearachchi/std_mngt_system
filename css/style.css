@@ -1,0 +1,675 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Container to hold the logo without affecting the navbar height */
+.logo-wrapper {
+  position: relative;
+  width: 100px;
+  height: 60px;
+}
+
+/* Position the logo absolutely so it doesn't resize the navbar */
+.logo-wrapper img {
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: auto;
+}
+
+/* navbar section  */
+
+.navbar {
+  padding: 20px;
+  background: #2b547e;
+}
+
+.navbar .navbar-toggler {
+  color: #fff !important;
+  background: #fff;
+  border-radius: 50%;
+  padding: 15px;
+  outline: none;
+  border: none;
+}
+
+.navbar #navbarNav {
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.navbar .navbar-brand {
+  color: #f1f1f1;
+  font-size: 30px;
+  margin-left: 0px;
+  font-weight: 600;
+}
+
+.navbar .navbar-brand i {
+  font-size: 25px;
+  background: #088f8f;
+  border-radius: 50%;
+  padding: 10px 15px;
+}
+
+.navbar .collapse {
+  background: #2b547e;
+}
+
+.navbar .dropdown-menu {
+  width: 12px;
+}
+
+.navbar .dropdown-menu li a {
+  color: #1c456d;
+  font-size: 15px;
+}
+
+.navbar ul li .bi {
+  background: #fff;
+  color: #1c456d;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 50%;
+}
+
+.navbar ul li a {
+  color: #f1f1f1;
+  text-decoration: none;
+  text-transform: capitalize;
+  font-size: 18px;
+  margin-right: 40px;
+}
+
+.navbar ul li a:hover {
+  color: #ffa500;
+}
+
+.name {
+  font-size: 30px;
+  background-color: #2b547e;
+  color: #ffa500;
+  padding-bottom: 40px;
+}
+
+/* hero section  */
+
+.hero-section {
+  padding: 20px;
+  background: #2b547e;
+}
+
+.hero-section .text-content {
+  margin-top: 100px;
+}
+
+.hero-section h1 {
+  font-size: 60px;
+  color: #fff;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.hero-section p {
+  margin-top: 30px;
+  color: #d1d1d1;
+}
+
+.hero-section button {
+  margin-top: 20px;
+  border-radius: 30px;
+  background-color: #ffa500;
+  height: 50px;
+  width: 170px;
+}
+
+.hero-section button:hover {
+  border: 1px solid #ffa500;
+  background: #2b547e;
+}
+
+.hero-section button a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.hero-section img {
+  height: 600px;
+  width: 600px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 20%;
+}
+
+/* services section  */
+
+.services-section {
+  padding: 100px;
+  background-color: #fbfbfb;
+}
+
+.services-section .services .row1 {
+  margin-bottom: 40px;
+}
+
+.services-section .services .card {
+  border: none;
+  border-radius: 15px;
+  width: 280px;
+  height: 320px;
+  padding: 10px;
+  cursor: pointer;
+  background: transparent;
+  box-shadow: 8px 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.services-section .services .card img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  padding: 10px;
+  margin-left: 30px;
+  margin-top: 30px;
+  background: #f0f0f0;
+}
+
+.services-section .services .card:hover {
+  background-color: #2b547e;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.services-section .services .card:hover h4 {
+  color: #fff;
+}
+
+.services-section .services .card:hover p {
+  color: #d1d1d1;
+}
+
+.services-section .services .card h4 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #555;
+  margin-top: 25px;
+}
+
+.services-section .services .card p {
+  font-size: 15px;
+  color: #777;
+  margin-top: 20px;
+}
+
+.services-section .text-content {
+  margin-top: 80px;
+}
+
+.services-section .text-content hr {
+  height: 5px;
+  background-color: #333;
+  border: none;
+}
+
+.services-section .text-content h3 {
+  font-size: 20px;
+  text-transform: capitalize;
+  color: #ffa500;
+  font-weight: 600;
+  margin-left: 30px;
+}
+
+.services-section .text-content h1 {
+  font-size: 50px;
+  margin-top: 20px;
+  font-weight: bold;
+  margin-left: 30px;
+  color: #1c456d;
+}
+
+.services-section .text-content p {
+  font-size: 17px;
+  margin-top: 50px;
+  margin-left: 30px;
+  color: #555;
+}
+
+.services-section .text-content button {
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-top: 20px;
+  border-radius: 30px;
+  color: #fff;
+  background-color: #2b547e;
+  height: 50px;
+  width: 170px;
+}
+
+.services-section .text-content button:hover {
+  background-color: #fff;
+  border: 2px solid #2b547e;
+  color: #2b547e;
+}
+
+/* Arrow buttons */
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 10;
+}
+
+.left-arrow {
+  left: 20px;
+}
+
+.right-arrow {
+  right: 20px;
+}
+
+.project-section {
+  background-color: #088f8f;
+  padding-top: 90px;
+  padding-bottom: 40px;
+  position: relative;
+}
+
+/* Horizontal Scrolling for Project Cards */
+.project-container {
+  display: flex;
+  overflow: hidden;
+}
+
+.project {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.project-section .text h1 {
+  font-size: 50px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.project-section hr {
+  height: 2px;
+  background-color: #f1f1f1;
+  border: none;
+}
+
+.project-section .text p {
+  font-size: 18px;
+  color: #d1d1d1;
+}
+
+/* Styling for Project Cards */
+.project-section .project-container {
+  overflow-x: hidden;
+  display: flex;
+  padding: 20px 0;
+}
+
+.project-section .project {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  gap: 5px;
+}
+
+.project-section .project .card {
+  min-width: 250px;
+  width: 250px;
+  height: 400px;
+  margin-top: 40px;
+  margin-left: 60px;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  margin-bottom: 40px;
+  flex: 0 0 auto; /* Prevents cards from shrinking */
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.project-section .project .card:hover {
+  transform: scale(1.1); /* Zoom effect on hover */
+}
+
+/* Styling for Image inside the card */
+.project-section .project .card-img-top {
+  width: 100%; /* Makes the image fill the full width of the card */
+  height: 200px; /* Fixed height to maintain uniformity */
+  height: 140px; /* Fixed height to maintain uniformity */
+  object-fit: cover; /* Ensures the image maintains its aspect ratio while filling the space */
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+/* Card Body Styling */
+.project-section .project .card-body {
+  padding: 15px;
+}
+
+.project-section .project .card h4 {
+  font-size: 20px;
+  color: #1c456d;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.project-section .project .card p {
+  font-size: 15px;
+  color: #555;
+  margin-top: 10px;
+}
+
+/* Style for Filter Row */
+.filter-row {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Filter Dropdown Style */
+.category-filter {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #088f8f;
+  background-color: #f1f1f1;
+  width: 100%;
+  max-width: 300px;
+  transition: border 0.3s ease;
+}
+
+.category-filter:hover,
+.category-filter:focus {
+  border-color: #088f8f;
+}
+
+/* Style for Filter Label */
+.filter-label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  margin-right: 10px;
+}
+
+/* Button Styling */
+/* .project-section .project .card button {
+  margin-top: 10px;
+  border-radius: 30px;
+  color: #fff;
+  border: none;
+  background-color: #088f8f;
+  height: 40px;
+  width: 120px;
+  text-transform: capitalize;
+} */
+
+/* .project-section .project .card button:hover {
+  background-color: #fff;
+  border: 2px solid #088f8f;
+  color: #088f8f;
+} */
+
+/* More course details modal */
+
+/* Modal Styling */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 100; /* On top of other elements */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  overflow: auto;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto; /* 10% from the top and centered */
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 800px;
+  color: #333;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Modal Header (Image and Title) */
+.modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.modal-img {
+  max-width: 200px;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Close Button */
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+}
+
+/* Modal Body Styling */
+#modalTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #088f8f;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+#modalCategory,
+#modalDate,
+#modalDescription {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#modalDescription {
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+}
+
+.cancel-btn {
+  margin-top: 10px;
+  border-radius: 30px;
+  color: #fff;
+  border: none;
+  background-color: #bd3010;
+  height: 40px;
+  padding: 0 20px; /* Adds padding on sides to accommodate content */
+  text-transform: capitalize;
+  font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap; /* Keeps text on a single line */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center; /* Centers text within the button */
+}
+
+.cancel-btn:hover {
+  background-color: #fff;
+  border: 2px solid #bd3010;
+  color: #bd3010;
+}
+
+.enroll-btn,
+.enroll-btn--pending,
+.enroll-btn--approved,
+.enroll-btn--rejected {
+  margin-top: 10px;
+  border-radius: 30px;
+  border: none;
+  height: 40px;
+  padding: 0 20px; /* Adds padding on sides to accommodate content */
+  text-transform: capitalize;
+  font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap; /* Keeps text on a single line */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center; /* Centers text within the button */
+}
+
+.enroll-btn {
+  background-color: #088f8f;
+  color: #fff;
+}
+
+.enroll-btn:hover {
+  background-color: #fff;
+  border: 2px solid #088f8f;
+  color: #088f8f;
+}
+
+.enroll-btn--pending {
+  background-color: #b3b3b3;
+  color: #565656;
+  cursor: not-allowed;
+}
+
+.enroll-btn--pending:hover {
+  background-color: #b3b3b3;
+  color: #666;
+}
+
+.enroll-btn--approved {
+  background-color: #4caf50; /* Green color for approved */
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.enroll-btn--approved:hover {
+  background-color: #4caf50; /* Same color on hover for consistency */
+  color: #fff;
+}
+
+.enroll-btn--rejected {
+  background-color: #f44336; /* Red color for rejected */
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.enroll-btn--rejected:hover {
+  background-color: #f44336; /* Same color on hover for consistency */
+  color: #fff;
+}
+
+/* footer section  */
+
+footer {
+  padding: 40px;
+  background: #1c456d;
+}
+
+footer .logo {
+  font-size: 30px;
+  color: #fff;
+  font-weight: 600;
+}
+
+footer .logo i {
+  font-size: 25px;
+  background: #088f8f;
+  border-radius: 50%;
+  padding: 10px 15px;
+}
+
+footer ul li {
+  list-style: none;
+  margin-top: 20px;
+}
+
+footer ul li a {
+  text-decoration: none;
+  color: #d1d1d1;
+  margin-left: 30px;
+  font-size: 15px;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+footer ul li a:hover {
+  color: #ffa500;
+}
+
+footer p {
+  color: #fff;
+  margin-top: 20px;
+  font-size: 15px;
+  margin-left: 30px;
+}
+
+.back-to-top {
+  background: #088f8f;
+  height: 50px;
+  width: 50px;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 50px;
+}
+
+@media (max-width: 700px) {
+  .hero-section img {
+    height: 350px;
+    margin-top: 50px;
+  }
+
+  .services-section .services .card {
+    margin-bottom: 50px;
+  }
+
+  .services-section .services .row1 {
+    margin-bottom: 0px;
+  }
+
+  footer ul li a {
+    margin-left: 5px;
+    letter-spacing: 0;
+  }
+}
