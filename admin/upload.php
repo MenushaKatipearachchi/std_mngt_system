@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $uploadFile = $uploadDir . uniqid() . '-' . basename($_FILES['image']['name']);
 
-            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/avif'];
             $maxSize = 5 * 1024 * 1024;
 
             if (in_array($_FILES['image']['type'], $allowedTypes) && $_FILES['image']['size'] <= $maxSize) {
@@ -35,7 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     die("Error uploading file.");
                 }
             } else {
-                die("Invalid file type or file is too large.");
+                echo "<script>alert('Invalid file type or file is too large.'); window.history.back();</script>";
+                exit;
             }
         }
 
