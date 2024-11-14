@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2024 at 05:07 PM
+-- Generation Time: Nov 14, 2024 at 06:26 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -34,13 +34,6 @@ CREATE TABLE `attendance` (
   `date` date NOT NULL,
   `status` enum('present','absent') DEFAULT 'present'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `attendance`
---
-
-INSERT INTO `attendance` (`id`, `student_id`, `date`, `status`) VALUES
-(3, 9, '2024-11-08', 'present');
 
 -- --------------------------------------------------------
 
@@ -97,11 +90,7 @@ CREATE TABLE `enrollments` (
 --
 
 INSERT INTO `enrollments` (`id`, `user_id`, `course_id`, `enrollment_date`, `status`) VALUES
-(14, 7, 1, '2024-11-07 19:58:46', 'approved'),
-(15, 7, 2, '2024-11-07 20:25:19', 'approved'),
-(16, 7, 3, '2024-11-07 20:47:04', 'rejected'),
-(20, 7, 4, '2024-11-08 05:58:21', 'rejected'),
-(21, 7, 7, '2024-11-08 08:17:50', 'pending');
+(22, 11, 7, '2024-11-14 16:46:37', 'pending');
 
 -- --------------------------------------------------------
 
@@ -114,17 +103,18 @@ CREATE TABLE `users` (
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `profile_image` varchar(255) DEFAULT NULL
+  `profile_image` varchar(255) DEFAULT NULL,
+  `role` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `profile_image`) VALUES
-(7, 'admin', 'admin@gmail.com', '$2a$12$ABdBpySbff6QCbX1cwz39OftAoimAIGBzxT9r71BHRdP8KSE5zEQq', 'admin/uploads/profile/1150589.jpg'),
-(9, 'test', 'test@gmail.com', '$2y$10$jn08cTXCNRbzB5QrWIqDZOAyruMnReCdjILF7MZmdgoyg6Ih5BiK2', NULL),
-(10, 'test2', 'test2@gmail.com', '$2y$10$K1N03eecErkE/LnxSmULheIikOJFvcohsHGRtGbVP9ArJdOf293H.', NULL);
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `profile_image`, `role`) VALUES
+(11, 'student1', 'student1@gmail.com', '$2y$10$0AEpeB2nm.sNn2mpdTTaZeFdZrFTpHrHoa6HbpC72Vlxbcx8oReVy', NULL, 'student'),
+(15, 'teacher1', 'teacher1@gmail.com', '$2y$10$yDwjvHd5JPyYRfWkHryzB.7QE2PobhTG2VkNlYo19s3vfe0aieqJ2', NULL, 'teacher'),
+(16, 'admin', 'admin@gmail.com', '$2y$10$hC/MPyhXjXDIA93fHrrxw.fIbvyhlPVRMPGXZ4E7IA4s6qXQaHyTO', NULL, 'admin');
 
 --
 -- Indexes for dumped tables
@@ -177,13 +167,13 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `enrollments`
 --
 ALTER TABLE `enrollments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables

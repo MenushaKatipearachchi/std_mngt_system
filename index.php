@@ -1,115 +1,94 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="icon" href="images/logo.png" type="image/png">
-  <link rel="stylesheet" href="css/style1.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Homepage</title>
+
+    <link rel="icon" href="images/logo.png" type="image/png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
-  <div class="container">
-    <div class="form-box box">
 
-      <?php
-      include "connection.php";
+    <!-- navbar section   -->
 
-      if (isset($_POST['login'])) {
+    <header class="navbar-section">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <div class="logo-wrapper">
+                        <img src="images/logo.png" alt="Student Management System Logo">
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-primary mx-2" href="login.php?role=student" role="button">Student Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-success mx-2" href="login.php?role=teacher" role="button">Teacher Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-danger mx-2" href="login.php?role=admin" role="button">Admin Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-        $email = $_POST['email'];
-        $pass = $_POST['password'];
+    <!-- hero section  -->
 
-        $sql = "select * from users where email='$email'";
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12 text-content">
+                    <h1>Welcome to the Student Management System</h1>
+                    <p>Please login as a student or teacher to access the courses.
+                    </p>
+                </div>
+                <div class="col-lg-8 col-md-12 col-sm-12">
+                    <img src="images/hero-image.jpeg" alt="" class="img-fluid">
+                </div>
 
-        $res = mysqli_query($conn, $sql);
+            </div>
+        </div>
+    </section>
 
-        if (mysqli_num_rows($res) > 0) {
+    <!-- footer section  -->
 
-          $row = mysqli_fetch_assoc($res);
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-12 col-sm-12">
+                    <img src="images/logo.png" alt="Student Management System Logo" style="width: 100px;">
+                </div>
 
-          $password = $row['password'];
-
-          $decrypt = password_verify($pass, $password);
-
-          if ($decrypt) {
-            $_SESSION['id'] = $row['id'];
-            $_SESSION['username'] = $row['username'];
-
-            // Check if the user is admin
-            if ($row['username'] === 'admin') {
-              header("location: admin/home.php");  // Redirect to admin home if the user is admin
-            } else {
-              header("location: home.php");        // Redirect to regular home otherwise
-            }
-          } else {
-            echo "<div class='message'>
-                    <p>Wrong Password</p>
-                    </div><br>";
-            echo "<a href='index.php'><button class='btn'>Go Back</button></a>";
-          }
-        } else {
-          echo "<div class='message'>
-                    <p>Wrong Email or Password</p>
-                    </div><br>";
-          echo "<a href='index.php'><button class='btn'>Go Back</button></a>";
-        }
-      } else {
-      ?>
-
-        <header>Login</header>
-        <hr>
-        <form action="#" method="POST">
-
-          <div class="form-box">
-            <div class="input-container">
-              <i class="fa fa-envelope icon"></i>
-              <input class="input-field" type="email" placeholder="Email Address" name="email">
+                <div class="col-lg-9 col-md-12 col-sm-12 text-end">
+                    <p>Student Management System <br> &copy;2024</p>
+                </div>
             </div>
 
-            <div class="input-container">
-              <i class="fa fa-lock icon"></i>
-              <input class="input-field password" type="password" placeholder="Password" name="password">
-              <i class="fa fa-eye toggle icon"></i>
-            </div>
+        </div>
 
-            <div class="remember">
-              <input type="checkbox" class="check" name="remember_me">
-              <label for="remember">Remember me</label>
-              <!-- <span><a href="forgot.php">Forgot password</a></span> -->
-            </div>
+    </footer>
 
-          </div>
-
-          <input type="submit" name="login" id="submit" value="Login" class="btn" style="display: block;">
-
-          <div class="links">
-            Don't have an account? <a href="signup.php">Signup Now</a>
-          </div>
-
-        </form>
-    </div>
-  <?php
-      }
-  ?>
-  </div>
-  <script>
-    const toggle = document.querySelector(".toggle"),
-      input = document.querySelector(".password");
-    toggle.addEventListener("click", () => {
-      if (input.type === "password") {
-        input.type = "text";
-        toggle.classList.replace("fa-eye-slash", "fa-eye");
-      } else {
-        input.type = "password";
-      }
-    })
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

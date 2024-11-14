@@ -148,9 +148,12 @@ if (!isset($_SESSION['username'])) {
     <div class="name">
         <center>Welcome
             <?php
+            echo $_SESSION['username']; // Display username
 
-            echo $_SESSION['username'];
-
+            // Check if the session has a role set, and display it in parentheses if it does
+            if (isset($_SESSION['role']) && ($_SESSION['role'] === 'admin')) {
+                echo " (" . $_SESSION['role'] . ")"; // Display role
+            }
             ?>
             !
         </center>

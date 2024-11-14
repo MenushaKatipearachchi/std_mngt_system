@@ -94,10 +94,12 @@ if (!isset($_SESSION['username'])) {
     <div class="name">
         <center>Welcome
             <?php
-            // echo $_SESSION['valid'];
+            echo $_SESSION['username']; // Display username
 
-            echo $_SESSION['username'];
-
+            // Check if the session has a role set, and display it in parentheses if it does
+            if (isset($_SESSION['role']) && ($_SESSION['role'] === 'student' || $_SESSION['role'] === 'teacher')) {
+                echo " (" . $_SESSION['role'] . ")"; // Display role
+            }
             ?>
             !
         </center>
@@ -122,82 +124,8 @@ if (!isset($_SESSION['username'])) {
         </div>
     </section>
 
-    <!-- activities section  -->
-
-    <!-- <section class="services-section" id="services">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-6 col-md-12 col-sm-12 services">
-
-                    <div class="row row1">
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="card">
-                                <img src="images/research.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h4 class="card-title">Research</h4>
-                                    <p class="card-text">We build effective strategies to help you reach customers
-                                        and
-                                        prospects
-                                        across the entire.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="card">
-                                <img src="images/brand.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h4 class="card-title">Branding</h4>
-                                    <p class="card-text">Brand identity represents the visual elements and assets
-                                        that
-                                        distinguish a brand.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row row2">
-
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="card">
-                                <img src="images/ux.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h4 class="card-title">UI/UX Design</h4>
-                                    <p class="card-text">UI/UX design services focus on creating intuitive &
-                                        user-centric
-                                        interfaces for digital products.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="card">
-                                <img src="images/app-development.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h4 class="card-title">Development</h4>
-                                    <p class="card-text">A concept is brought to life through the services various
-                                        stages, such
-                                        as planning, testing and deployment.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-lg-6 col-md-12 col-sm-12 text-content">
-                    <h3>Quick Views</h3>
-                    <h1>Find your enrolled courses and other activities here</h1>
-                </div>
-
-            </div>
-        </div>
-    </section> -->
-
     <!-- project section  -->
-
+     
     <section class="project-section" id="projects">
         <div class="container">
             <div class="row text">
@@ -211,18 +139,14 @@ if (!isset($_SESSION['username'])) {
             </div>
 
             <!-- Category Filter Dropdown -->
-            <!-- Centered Filter Dropdown -->
             <div class="row filter-row justify-content-center">
                 <div class="col-lg-6 col-md-8 text-center">
                     <label for="categoryFilter" class="filter-label">Filter by Category:</label>
                     <select id="categoryFilter" class="category-filter" onchange="filterCourses()">
                         <option value="all">All Categories</option>
                         <?php
-                        // Fetch distinct categories from the database
                         $category_query = "SELECT DISTINCT category FROM courses";
                         $category_result = mysqli_query($conn, $category_query);
-
-                        // Populate the dropdown with categories
                         while ($category = mysqli_fetch_assoc($category_result)) {
                             echo '<option value="' . htmlspecialchars($category['category']) . '">' . htmlspecialchars($category['category']) . '</option>';
                         }
@@ -238,17 +162,13 @@ if (!isset($_SESSION['username'])) {
             <div class="project-container">
                 <div class="row project">
                     <?php
-                    // Fetch courses from the database
                     $query = "SELECT * FROM courses ORDER BY last_modified DESC";
                     $result = mysqli_query($conn, $query);
-
-                    // Get the current user's ID
                     $user_id = $_SESSION['id'];
+                    $user_role = $_SESSION['role'];
 
-                    // Check if there are courses in the database
                     if (mysqli_num_rows($result) > 0) {
                         while ($course = mysqli_fetch_assoc($result)) {
-                            // Check if the user has an enrollment status for this course
                             $enrollment_check_query = "SELECT status FROM enrollments WHERE user_id = $user_id AND course_id = " . $course['id'];
                             $enrollment_check_result = mysqli_query($conn, $enrollment_check_query);
                             $enrollment_status = mysqli_fetch_assoc($enrollment_check_result);
@@ -273,7 +193,6 @@ if (!isset($_SESSION['username'])) {
                                 }
                             }
 
-                            // Check if the image path exists and set a default image if not
                             $imagePath = !empty($course['image_path']) ? 'admin/' . htmlspecialchars($course['image_path']) : 'images/default_image.jpg';
                     ?>
                             <div class="card course-card" data-category="<?php echo htmlspecialchars($course['category']); ?>" onclick="openModal(<?php echo htmlspecialchars(json_encode(array_merge($course, ['status' => $enrollment_status['status']]))); ?>)">
@@ -284,13 +203,16 @@ if (!isset($_SESSION['username'])) {
                                         <?php echo htmlspecialchars($course['category']); ?><br><br>
                                         <?php echo date("M d, Y", strtotime($course['date'])); ?>
                                     </p>
-                                    <!-- Enroll Button -->
-                                    <button class="<?php echo $status_class; ?>"
-                                        data-course='<?php echo json_encode($course); ?>'
-                                        onclick="showConfirmationModal(event)"
-                                        <?php echo $button_disabled ? 'disabled' : ''; ?>>
-                                        <?php echo $status_text; ?>
-                                    </button>
+
+                                    <!-- Enroll Button: Show only if user role is not Teacher -->
+                                    <?php if ($user_role !== 'teacher') : ?>
+                                        <button class="<?php echo $status_class; ?>"
+                                            data-course='<?php echo json_encode($course); ?>'
+                                            onclick="showConfirmationModal(event)"
+                                            <?php echo $button_disabled ? 'disabled' : ''; ?>>
+                                            <?php echo $status_text; ?>
+                                        </button>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                     <?php
@@ -304,18 +226,19 @@ if (!isset($_SESSION['username'])) {
         </div>
     </section>
 
-
     <!-- Enroll Confirmation Modal -->
-    <div id="confirmationModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeConfirmationModal()">&times;</span>
-            <h3>Are you sure you want to enroll in this course?</h3>
-            <div class="modal-footer">
-                <button id="confirmEnroll" class="enroll-btn" onclick="confirmEnrollment()">Yes, Enroll</button>
-                <button class="cancel-btn" onclick="closeConfirmationModal()">Cancel</button>
+    <?php if ($user_role !== 'teacher') : ?>
+        <div id="confirmationModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeConfirmationModal()">&times;</span>
+                <h3>Are you sure you want to enroll in this course?</h3>
+                <div class="modal-footer">
+                    <button id="confirmEnroll" class="enroll-btn" onclick="confirmEnrollment()">Yes, Enroll</button>
+                    <button class="cancel-btn" onclick="closeConfirmationModal()">Cancel</button>
+                </div>
             </div>
         </div>
-    </div>
+    <?php endif; ?>
 
     <div id="courseModal" class="modal">
         <div class="modal-content">
@@ -329,9 +252,12 @@ if (!isset($_SESSION['username'])) {
                 <p id="modalDate"></p>
                 <p id="modalDescription"></p>
             </div>
-            <div class="modal-footer">
-                <button id="enrollButton" class="enroll-btn" onclick="showConfirmationModal(event)">Enroll Now</button>
-            </div>
+            <!-- Enroll Button in Modal: Show only if user role is not Teacher -->
+            <?php if ($user_role !== 'teacher') : ?>
+                <div class="modal-footer">
+                    <button id="enrollButton" class="enroll-btn" onclick="showConfirmationModal(event)">Enroll Now</button>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 

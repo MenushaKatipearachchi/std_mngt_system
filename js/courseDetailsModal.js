@@ -4,6 +4,13 @@ let currentCourse = null; // To hold the current course selected
 function openModal(course) {
   currentCourse = course; // Save the selected course globally
 
+  // Ensure the modal and elements exist before trying to manipulate them
+  const modal = document.getElementById("courseModal");
+  if (!modal) {
+    console.error("Course modal not found!");
+    return;
+  }
+
   // Set the course image in the course modal
   document.getElementById("modalImage").src = course.image_path
     ? "admin/" + course.image_path
@@ -20,38 +27,40 @@ function openModal(course) {
   // Access the enroll button in the modal
   const enrollButton = document.getElementById("enrollButton");
 
-  // Remove any existing class to reset the button styles
-  enrollButton.classList.remove(
-    "enroll-btn--pending",
-    "enroll-btn--approved",
-    "enroll-btn--rejected",
-    "enroll-btn"
-  );
+  if (enrollButton) {
+    // Remove any existing class to reset the button styles
+    enrollButton.classList.remove(
+      "enroll-btn--pending",
+      "enroll-btn--approved",
+      "enroll-btn--rejected",
+      "enroll-btn"
+    );
 
-  // Check if the course has pending, approved, or rejected status
-  if (course.status === "pending") {
-    enrollButton.disabled = true;
-    enrollButton.classList.add("enroll-btn--pending");
-    enrollButton.innerText = "Enrollment Pending";
-  } else if (course.status === "approved") {
-    enrollButton.disabled = true;
-    enrollButton.classList.add("enroll-btn--approved");
-    enrollButton.innerText = "Enrolled";
-  } else if (course.status === "rejected") {
-    enrollButton.disabled = true;
-    enrollButton.classList.add("enroll-btn--rejected");
-    enrollButton.innerText = "Enrollment Rejected";
-  } else {
-    enrollButton.disabled = false;
-    enrollButton.classList.add("enroll-btn");
-    enrollButton.innerText = "Enroll";
+    // Check if the course has pending, approved, or rejected status
+    if (course.status === "pending") {
+      enrollButton.disabled = true;
+      enrollButton.classList.add("enroll-btn--pending");
+      enrollButton.innerText = "Enrollment Pending";
+    } else if (course.status === "approved") {
+      enrollButton.disabled = true;
+      enrollButton.classList.add("enroll-btn--approved");
+      enrollButton.innerText = "Enrolled";
+    } else if (course.status === "rejected") {
+      enrollButton.disabled = true;
+      enrollButton.classList.add("enroll-btn--rejected");
+      enrollButton.innerText = "Enrollment Rejected";
+    } else {
+      enrollButton.disabled = false;
+      enrollButton.classList.add("enroll-btn");
+      enrollButton.innerText = "Enroll";
+    }
+
+    // Attach the course data to the "Enroll Now" button inside the course modal
+    enrollButton.setAttribute("data-course", JSON.stringify(course)); // Store course data in the button
   }
 
   // Show the course modal
-  document.getElementById("courseModal").style.display = "block";
-
-  // Attach the course data to the "Enroll Now" button inside the course modal
-  enrollButton.setAttribute("data-course", JSON.stringify(course)); // Store course data in the button
+  modal.style.display = "block";
 }
 
 // This function is triggered when you click on the "Enroll" button inside the course modal or the card
